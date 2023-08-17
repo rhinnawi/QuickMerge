@@ -7,7 +7,7 @@ outputted to a text file.
 Author: Rani Hinnawi
 Date: 2023-08-08
 """
-from typing import TextIO, List
+from typing import TextIO, List, Union
 
 
 def write_to_output(output_file: TextIO, output_text: List[str]) -> None:
@@ -26,7 +26,8 @@ def write_to_output(output_file: TextIO, output_text: List[str]) -> None:
     return
 
 
-def break_string(expression: List[str], chars_per_line: int) -> str:
+def break_string(expression: List[Union[str, int]], chars_per_line: int) \
+        -> str:
     """
     Helper function for outputting a long string within user-defined length
     restrictions.
@@ -38,20 +39,18 @@ def break_string(expression: List[str], chars_per_line: int) -> str:
     Returns:
         str: formatted string
     """
-    if len(expression) <= chars_per_line:
-        return expression
-
     # Begin on new line with indentation
     lines = ["\t\t"]
     current_line = ""
 
-    # Build up lines without cutting off words
-    for word in expression:
-        if len(current_line) + len(word) + 1 <= chars_per_line:
-            current_line += word + " "
+    # Build up lines without cutting off terms
+    for term in expression:
+        term = str(term)
+        if len(current_line) + len(term) + 1 <= chars_per_line:
+            current_line += term + " "
         else:
             lines.append(current_line)
-            current_line = word + " "
+            current_line = term + " "
 
     # Add last line
     if current_line:
@@ -61,8 +60,8 @@ def break_string(expression: List[str], chars_per_line: int) -> str:
 
 
 def format_sorted_results(line_number: int, records: List[str],
-                          result: List[str], metrics: str, error=False,
-                          chars_per_line=80) -> str:
+                          result: List[Union[str, int]], metrics: str,
+                          error=False, chars_per_line=80) -> str:
     """
     Function that formats the inputted expression and the output given from a
     sorting process.

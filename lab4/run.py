@@ -9,10 +9,44 @@ Author: Rani Hinnawi
 Date: 2023-08-22
 """
 from sys import stderr
-from typing import TextIO
+from typing import TextIO, List, Union
 from support.output_formatters import write_to_output, format_sorted_results
 from support.format_performance_report import format_performance_report
 from support.performance import Performance
+
+
+def parse_all_records(input_file: TextIO) -> Union[List[int], bool]:
+    """
+    Helper function for retrieving all records from a data input file. This
+    assumes multiple records spread across multiple lines. 
+
+    Args:
+        input_file (TextIO): text file with string items to sort
+
+    Returns:
+        List[int]: list of all records
+        bool: True if ValueError raised else False
+
+    Raises:
+        ValueError: if a non-integer record is found
+    """
+    all_integers = []
+
+    # Read each line in input file. Add records to output list
+    with open(input_file, 'r', encoding="utf-8") as records:
+        for line in records:
+            line = line.strip()
+            if line:
+                # If empty line, skip to the next. Ensure records are integers
+                try:
+                    integers = [int(num) for num in line.split()]
+                    all_integers.extend(integers)
+                except ValueError as ve:
+                    # If record cannot be cast as an int, it is invalid
+                    error_message = [ve.args[0]]
+                    return error_message, True
+
+    return all_integers, False
 
 
 def run(input_file: TextIO, output_file: TextIO, debug=False):
@@ -28,49 +62,43 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     # Set up Performance object and output strings used by runner functions
     performance = Performance()
     out = []
+    records, error = parse_all_records(input_file)
 
-    with open(input_file, 'r', encoding="utf-8") as inputs:
-        out.append("-------Quicksort and Natural Merge Sort Results-------\n")
-        line_counter = 1
-        # TODO: implement way to create full list by reading all lines and
-        # concatenating records into one large list
-        # TODO: set up loop to re-run sort multiple times but only print
-        # sorted output the first time, performance multiple times
-        for line in inputs:
-            records = line.strip().split()
-            size = len(records)
+    out.append("-------Quicksort and Natural Merge Sort Results-------\n")
+    line_counter = 1
+    # TODO: implement way to create full list by reading all lines and
+    # concatenating records into one large list
+    # TODO: set up loop to re-run sort multiple times but only print
+    # sorted output the first time, performance multiple times
+    size = len(records)
 
-            if size == 0:
-                # Case: empty line. Ignore.
-                continue
+    # Set up error handling and performance metrics
+    result = []
+    performance.set_size(size).start()
 
-            # Set up error handling and performance metrics
-            error = False
-            result = []
-            performance.set_size(size).start()
+    try:
+        # result = list(map(str, records))
+        result = ["Testing"]
+    except ValueError as ve:
+        result = ve.args[0].split()
+        error = True
 
-            try:
-                result = records
-            except ValueError as ve:
-                result = ve.args[0].split()
-                error = True
+        if debug:
+            error_message = f"Records: {records[:80]}"
+            error_message += f"\n\tError Message: {result}"
+            print(error_message, file=stderr)
+    finally:
+        performance.stop()
 
-                if debug:
-                    error_message = f"Records: {records[:80]}"
-                    error_message += f"\n\tError Message: {result}"
-                    print(error_message, file=stderr)
-            finally:
-                performance.stop()
+        if error:
+            performance.log_error()
+        else:
+            performance.log_success()
 
-                if error:
-                    performance.log_error()
-                else:
-                    performance.log_success()
+        out.append(format_sorted_results(
+            line_counter, records, result, str(performance), error))
 
-                out.append(format_sorted_results(
-                    line_counter, records, result, str(performance), error))
-
-                line_counter += 1
+        line_counter += 1
 
     # Output performance report
     out.append(format_performance_report(performance))
