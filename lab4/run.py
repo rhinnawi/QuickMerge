@@ -20,7 +20,8 @@ def run(input_file: TextIO, output_file: TextIO):
         output_file (TextIO): text file where results are written
         debug (bool): True if debug mode is toggled on, otherwise False
     """
-    with open(input_file, "r", encoding="utf-8") as input:
-        for line in input:
-            print(line)
+    with open(input_file, "r", encoding="utf-8") as inputs, open(output_file, "w", encoding="utf-8") as out:
+        for line in inputs:
+            print(line.split())
+            out.write(str(line.split()))
     print("OK")
