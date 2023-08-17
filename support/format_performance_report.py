@@ -11,7 +11,7 @@ Date: 2023-08-08
 from support.performance import Performance
 
 
-def format_performance_report(metrics: 'Performance', micro_sec=True) -> str:
+def format_performance_report(metrics: 'Performance', micro_sec=False) -> str:
     """
     Function that formats the size and runtime data logged for each success and
     failure into a report. Runtimes are outputted by size in order from 

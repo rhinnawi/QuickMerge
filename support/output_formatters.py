@@ -51,17 +51,17 @@ def break_string(expression: str, chars_per_line: int) -> str:
     return "\n\t\t".join(lines)
 
 
-def format_encoded_results(line_number: int, expression: str, result: str,
-                           metrics: str, error=False, chars_per_line=80) \
+def format_sorted_results(line_number: int, expression: str, result: str,
+                          metrics: str, error=False, chars_per_line=80) \
         -> str:
     """
-    Function that formats the inputted expression and the output given from the
-    encoding process.
+    Function that formats the inputted expression and the output given from a
+    sorting process.
 
     Args:
         line_number (int): number for labelling lines in the output
-        expression (str): original expression being encoded
-        result (str): encoded binary expression OR error message
+        expression (str): original file records being sorted
+        result (str): sorted records OR error message
         metrics (str): string representation of Performance values (size, runtime)
         error (bool): indicator of whether result is an error message
 
@@ -74,40 +74,7 @@ def format_encoded_results(line_number: int, expression: str, result: str,
     write = [prefix + expression]
 
     # Format and append result with error  handling
-    prefix = "\tError - " if error else "\tEncoded: "
-    result = break_string(result, chars_per_line - len(prefix))
-    write.append(prefix + result)
-
-    # Add metrics and return
-    write.append(f"{metrics}\n")
-
-    return '\n'.join(write)
-
-
-def format_decoded_results(line_number: int, expression: str, result: str,
-                           metrics: str, error=False, chars_per_line=80) \
-        -> str:
-    """
-    Function that formats the inputted expression and the output given from the
-    decoding process.
-
-    Args:
-        line_number (int): number for labelling lines in the output
-        expression (str): original expression being decoded
-        result (str): decoded expression OR error message
-        metrics (str): string representation of Performance values (size, runtime)
-        error (bool): indicator of whether result is an error message
-
-    Returns:
-        str: conditionally formatted results
-    """
-    # Format header line with original expression
-    prefix = f"{line_number}. Binary: "
-    expression = break_string(expression, chars_per_line - len(prefix))
-    write = [prefix + expression]
-
-    # Format and append result with error  handling
-    prefix = "\tError - " if error else "\tDecoded: "
+    prefix = "\tError - " if error else "\tSorted: "
     result = break_string(result, chars_per_line - len(prefix))
     write.append(prefix + result)
 
