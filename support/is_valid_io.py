@@ -2,13 +2,11 @@
 is_valid_io
 
 This module contains the function that checks for validating the user-provided
-input and output file paths. Python typing initially assumes that arguments
-are TextIO types, so the function body validates that the paths exist. The
-input file must already exist as output depends on its values. Output files
-may be newly written, and so only the parent directory must already exist.
+file paths. Python typing initially assumes that arguments are TextIO types, so
+the function body validates that the paths exist.
 
 Author: Rani Hinnawi
-Date: 2023-07-25
+Date: 2023-08-22
 """
 from typing import TextIO, List
 

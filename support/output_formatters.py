@@ -26,7 +26,7 @@ def write_to_output(output_file: TextIO, output_text: List[str]) -> None:
     return
 
 
-def break_string(expression: str, chars_per_line: int) -> str:
+def break_string(expression: List[str], chars_per_line: int) -> str:
     """
     Helper function for outputting a long string within user-defined length
     restrictions.
@@ -43,25 +43,34 @@ def break_string(expression: str, chars_per_line: int) -> str:
 
     # Begin on new line with indentation
     lines = ["\t\t"]
+    current_line = ""
 
-    # Break up into lines of length chars_per_line and return
-    for i in range(0, len(expression), chars_per_line):
-        lines.append(expression[i:i + chars_per_line])
+    # Build up lines without cutting off words
+    for word in expression:
+        if len(current_line) + len(word) + 1 <= chars_per_line:
+            current_line += word + " "
+        else:
+            lines.append(current_line)
+            current_line = word + " "
+
+    # Add last line
+    if current_line:
+        lines.append(current_line)
 
     return "\n\t\t".join(lines)
 
 
-def format_sorted_results(line_number: int, expression: str, result: str,
-                          metrics: str, error=False, chars_per_line=80) \
-        -> str:
+def format_sorted_results(line_number: int, records: List[str],
+                          result: List[str], metrics: str, error=False,
+                          chars_per_line=80) -> str:
     """
     Function that formats the inputted expression and the output given from a
     sorting process.
 
     Args:
         line_number (int): number for labelling lines in the output
-        expression (str): original file records being sorted
-        result (str): sorted records OR error message
+        expression (List[str]): original file records before being sorted
+        result (List[str]): sorted records OR error message
         metrics (str): string representation of Performance values (size, runtime)
         error (bool): indicator of whether result is an error message
 
@@ -70,7 +79,7 @@ def format_sorted_results(line_number: int, expression: str, result: str,
     """
     # Format header line with original expression
     prefix = f"{line_number}. Original: "
-    expression = break_string(expression, chars_per_line - len(prefix))
+    expression = break_string(records, chars_per_line - len(prefix))
     write = [prefix + expression]
 
     # Format and append result with error  handling

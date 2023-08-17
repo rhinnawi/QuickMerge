@@ -10,7 +10,8 @@ Date: 2023-08-22
 """
 from sys import stderr
 from typing import TextIO
-from support.output_formatters import write_to_output
+from support.output_formatters import write_to_output, format_sorted_results
+from support.format_performance_report import format_performance_report
 from support.performance import Performance
 
 
@@ -29,12 +30,15 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     out = []
 
     with open(input_file, 'r', encoding="utf-8") as inputs:
-        out.append("\n\n-------Sorting Results-------\n")
+        out.append("-------Quicksort and Natural Merge Sort Results-------\n")
         line_counter = 1
-        # TODO: replace for-loop with cleaner way to read individual records
+        # TODO: implement way to create full list by reading all lines and
+        # concatenating records into one large list
+        # TODO: set up loop to re-run sort multiple times but only print
+        # sorted output the first time, performance multiple times
         for line in inputs:
-            expression = line.strip()
-            size = len(expression)
+            records = line.strip().split()
+            size = len(records)
 
             if size == 0:
                 # Case: empty line. Ignore.
@@ -42,17 +46,17 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
 
             # Set up error handling and performance metrics
             error = False
-            result = ""
+            result = []
             performance.set_size(size).start()
 
             try:
-                result = print(expression)
+                result = records
             except ValueError as ve:
-                result = ve.args[0]
+                result = ve.args[0].split()
                 error = True
 
                 if debug:
-                    error_message = f"Expression: {expression}"
+                    error_message = f"Records: {records[:80]}"
                     error_message += f"\n\tError Message: {result}"
                     print(error_message, file=stderr)
             finally:
@@ -63,10 +67,13 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
                 else:
                     performance.log_success()
 
+                out.append(format_sorted_results(
+                    line_counter, records, result, str(performance), error))
+
                 line_counter += 1
 
-    # Display conversion values
-    out.append("\nSorted values: ")
+    # Output performance report
+    out.append(format_performance_report(performance))
 
     # Output results
     write_to_output(output_file, out)
