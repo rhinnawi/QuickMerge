@@ -8,7 +8,9 @@ output file.
 Author: Rani Hinnawi
 Date: 2023-08-22
 """
-def run():
+from typing import TextIO
+
+def run(input_file: TextIO, output_file: TextIO):
     """
     Wrapper function for running Quicksort and Natural Merge Sort using input
     file data, then writing results and performance metrics to output file.
@@ -18,5 +20,7 @@ def run():
         output_file (TextIO): text file where results are written
         debug (bool): True if debug mode is toggled on, otherwise False
     """
+    with open(input_file, "r", encoding="utf-8") as input:
+        for line in input:
+            print(line)
     print("OK")
-    

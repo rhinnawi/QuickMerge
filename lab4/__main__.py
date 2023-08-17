@@ -1,17 +1,16 @@
 """
 __main__
 
-This is the entry point for the huffman_encoding package. It runs when explicity 
+This is the entry point for the QuickMerge package. It runs when explicity 
 called and not by default when the package is imported. It can be called by the
 command: 
-python -m hencoding input_file output_file [--encode/decode] 
-        [...optional arguments]
+python -m lab4 input_file output_file [...optional arguments]
 
 The primary functionality lies in the package modules, and not directly in the
 main module here.
 
 Author: Rani Hinnawi
-Date: 2023-08-08
+Date: 2023-08-22
 """
 from sys import stderr
 from pathlib import Path
@@ -36,9 +35,7 @@ out_file = Path(args.output_file)
 # Validate file paths then run main program
 try:
     is_valid_io(in_file, out_file)
-    run()
-    # TODO: Replace run(freq_table, in_file, out_file, encode=args.encode,
-    #    memo=args.memoize, decode=args.decode, debug=args.debug)
+    run(in_file, out_file)
 except FileNotFoundError as fnfe:
     error_message = fnfe.args[0]
     if args.debug:
