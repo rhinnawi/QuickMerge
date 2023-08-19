@@ -103,12 +103,14 @@ def format_sorted_results(line_number: int, result: List[Union[str, int]],
         str: conditionally formatted results
     """
     # Format and append result with error  handling
-    prefix = f"{line_number}. "
-    prefix += "\tError - " if error else "\tSorted: "
-    result = break_string(result, chars_per_line - len(prefix))
-    write = [prefix + result]
+    output_text = f"{line_number}. "
+
+    if len(result) > 0:
+        # Add to output text if results are being added to the output
+        output_text += "\tError - " if error else "\tSorted: "
+        output_text += break_string(result, chars_per_line - len(output_text))
+        output_text += '\n'
 
     # Add metrics and return
-    write.append(f"Runtime: {runtime}ns\n")
-
-    return '\n'.join(write)
+    output_text += f"Runtime: {runtime}ns\n"
+    return output_text

@@ -10,10 +10,10 @@ Date: 2023-08-22
 """
 from sys import stderr
 from typing import TextIO, List, Union
-from support.output_formatters import write_to_output, format_sorted_results, \
-    format_original_records
+from support.output_formatters import write_to_output, format_original_records
 from support.format_performance_report import format_performance_report
 from support.performance import Performance
+from lab4.run_sort import run_sort
 
 
 def parse_all_records(input_file: TextIO) -> Union[List[int], bool]:
@@ -77,39 +77,13 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
 
         return
 
-    line_counter = 1
     # TODO: implement way to create full list by reading all lines and
     # concatenating records into one large list
     # TODO: set up loop to re-run sort multiple times but only print
     # sorted output the first time, performance multiple times
-    size = len(records)
-
-    # Set up error handling and performance metrics
-    result = []
-    performance.set_size(size).start()
-
-    try:
-        result = records
-    except ValueError as ve:
-        result = ve.args[0].split()
-        error = True
-
-        if debug:
-            error_message = f"Records: {records[:80]}"
-            error_message += f"\n\tError Message: {result}"
-            print(error_message, file=stderr)
-    finally:
-        performance.stop()
-
-        if error:
-            performance.log_error()
-        else:
-            performance.log_success()
-
-        out.append(format_sorted_results(
-            line_counter, result, str(performance.get_runtime()), error))
-
-        line_counter += 1
+    out.append("\n-------Natural Merge Sort Results-------\n")
+    line_number = 1
+    out.append(run_sort(line_number, records, performance, debug))
 
     # Output performance report
     out.append(format_performance_report(performance))
