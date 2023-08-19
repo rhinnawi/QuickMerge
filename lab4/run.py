@@ -67,8 +67,9 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     records, error = parse_all_records(input_file)
     print_results = len(records) <= 50
 
-    out.append("-------Quicksort and Natural Merge Sort Results-------\n")
-    out.extend(format_original_records(records, error))
+    out.append("-------Quicksort and Natural Merge Sort Results-------")
+    if print_results:
+        out.extend(format_original_records(records, error))
 
     if error:
         # Output results
@@ -80,14 +81,14 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
         return
 
     # Run Quicksort
-    out.append("\n-------Quicksort Results-------\n")
+    out.append("\nQuicksort:\n")
     for line_number in range(1, RUNS_PER_SORT + 1):
         out.append(run_sort(line_number, records, performance, print_results,
                             debug))
         print_results = False
 
     # Run Natural Merge Sort
-    out.append("\n-------Natural Merge Sort Results-------\n")
+    out.append("\nNatural Merge Sort:\n")
     print_results = len(records) <= 50
     for line_number in range(1, RUNS_PER_SORT + 1):
         out.append(run_sort(line_number, records, performance, print_results,
