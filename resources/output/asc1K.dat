@@ -63,15 +63,36 @@ Size: 1000 Records
 
 
 
+-------Quicksort Results-------
+
+1. Runtime: 500ns
+
+2. Runtime: 300ns
+
+3. Runtime: 200ns
+
+4. Runtime: 200ns
+
+5. Runtime: 200ns
+
+
 -------Natural Merge Sort Results-------
 
-1. Runtime: 400ns
+1. Runtime: 200ns
+
+2. Runtime: 200ns
+
+3. Runtime: 100ns
+
+4. Runtime: 200ns
+
+5. Runtime: 100ns
 
 
 -------Performance Report-------
 
-Total number of successes: 1
-[400]
+Total number of successes: 10
+[100, 100, 200, 200, 200, 200, 200, 200, 300, 500]
 -
 Total number of errors: 0
 

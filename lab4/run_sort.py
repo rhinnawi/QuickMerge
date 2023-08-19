@@ -14,8 +14,8 @@ from support.output_formatters import format_sorted_results
 from support.performance import Performance
 
 
-def run_sort(line_number: int, records: List[int],
-             performance: "Performance", debug=False) -> str:
+def run_sort(line_number: int, records: List[int], performance: "Performance",
+             print_results=False, debug=False) -> str:
     """
     Runner function for passed-in sort type using inputted records list.
     Returns string fromatted for output.
@@ -24,19 +24,18 @@ def run_sort(line_number: int, records: List[int],
         line_number (int): number for labelling lines in the output
         records (List[int]): list of integer records to be sorted
         performance (Performance): Performance object for storing metrics
+        print_sorted (bool): True if printing sorted results, otherwise False
         debug (bool): True if debug mode is toggled on, otherwise False
 
     Returns:
         str: output string
     """
-    # Set up output text. Only print results if there are 50 or fewer records
-    SIZE = len(records)
-    print_results = SIZE <= 50
+    # Set up
     result = []
     error = False
 
     # Set up error handling and performance metrics
-    performance.set_size(SIZE).start()
+    performance.set_size(len(records)).start()
 
     try:
         result = records

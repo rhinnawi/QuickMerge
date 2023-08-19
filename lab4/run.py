@@ -63,7 +63,9 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     # Set up Performance object and output strings used by runner functions
     performance = Performance()
     out = []
+    RUNS_PER_SORT = 5
     records, error = parse_all_records(input_file)
+    print_results = len(records) <= 50
 
     out.append("-------Quicksort and Natural Merge Sort Results-------\n")
     out.extend(format_original_records(records, error))
@@ -77,13 +79,19 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
 
         return
 
-    # TODO: implement way to create full list by reading all lines and
-    # concatenating records into one large list
-    # TODO: set up loop to re-run sort multiple times but only print
-    # sorted output the first time, performance multiple times
+    # Run Quicksort
+    out.append("\n-------Quicksort Results-------\n")
+    for line_number in range(1, RUNS_PER_SORT + 1):
+        out.append(run_sort(line_number, records, performance, print_results,
+                            debug))
+        print_results = False
+
+    # Run Natural Merge Sort
     out.append("\n-------Natural Merge Sort Results-------\n")
-    line_number = 1
-    out.append(run_sort(line_number, records, performance, debug))
+    print_results = len(records) <= 50
+    for line_number in range(1, RUNS_PER_SORT + 1):
+        out.append(run_sort(line_number, records, performance, print_results,
+                            debug))
 
     # Output performance report
     out.append(format_performance_report(performance))
