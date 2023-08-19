@@ -10,7 +10,8 @@ Date: 2023-08-22
 """
 from sys import stderr
 from typing import TextIO, List, Union
-from support.output_formatters import write_to_output, format_sorted_results
+from support.output_formatters import write_to_output, format_sorted_results, \
+    format_original_records
 from support.format_performance_report import format_performance_report
 from support.performance import Performance
 
@@ -65,6 +66,17 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     records, error = parse_all_records(input_file)
 
     out.append("-------Quicksort and Natural Merge Sort Results-------\n")
+    out.extend(format_original_records(records, error))
+
+    if error:
+        # Output results
+        write_to_output(output_file, out)
+
+        if debug:
+            print('ERROR CAUGHT. SEE OUTPUT FILE.', file=stderr)
+
+        return
+
     line_counter = 1
     # TODO: implement way to create full list by reading all lines and
     # concatenating records into one large list
@@ -77,8 +89,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     performance.set_size(size).start()
 
     try:
-        # result = list(map(str, records))
-        result = ["Testing"]
+        result = records
     except ValueError as ve:
         result = ve.args[0].split()
         error = True
@@ -96,7 +107,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
             performance.log_success()
 
         out.append(format_sorted_results(
-            line_counter, records, result, str(performance), error))
+            line_counter, result, str(performance.get_runtime()), error))
 
         line_counter += 1
 

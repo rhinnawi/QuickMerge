@@ -6,7 +6,7 @@ outputted to a text file. It specifically holds a function for formatting the
 performance report.
 
 Author: Rani Hinnawi
-Date: 2023-08-08
+Date: 2023-08-22
 """
 from support.performance import Performance
 
@@ -35,9 +35,9 @@ def format_performance_report(metrics: 'Performance', micro_sec=False) -> str:
     successes = metrics.get_successes()
     for size in sorted(successes.keys()):
         runtime = sorted(successes[size])
-        write.append(f"{size}: {runtime}")
+        write.append(str(runtime))
 
-    write.append("\n")
+    write.append("-")
 
     # Note total number of errors and errors per size
     write.append(f"Total number of errors: {metrics.get_num_errors()}")
@@ -45,9 +45,9 @@ def format_performance_report(metrics: 'Performance', micro_sec=False) -> str:
     errors = metrics.get_errors()
     for size in sorted(errors.keys()):
         runtime = sorted(errors[size])
-        write.append(f"{size}: {runtime}\n")
+        write.append(str(runtime))
 
-    write.append("\nFormat:\n\tstring_size: [runtime1, ..., runtimeN]")
+    write.append("\nFormat:\n\t[runtime1, ..., runtimeN]")
     footer = "\tNOTE: Runtimes measured in"
 
     if micro_sec:

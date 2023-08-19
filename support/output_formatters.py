@@ -59,34 +59,56 @@ def break_string(expression: List[Union[str, int]], chars_per_line: int) \
     return "\n\t\t".join(lines)
 
 
-def format_sorted_results(line_number: int, records: List[str],
-                          result: List[Union[str, int]], metrics: str,
-                          error=False, chars_per_line=80) -> str:
+def format_original_records(records: List[int], error=False, chars_per_line=80)\
+        -> List[str]:
+    """
+    Function that formats the list of all inputted records
+
+    Args:
+    records (List[str]): original file records before being sorted
+    error (bool): indicator of whether result is an error message
+    chars_per_line (int): max width of lines in output file
+
+    Returns:
+        List[str]: conditionally formatted results
+    """
+    # Format header line with original expression
+    prefix = "Original: "
+
+    if error:
+        # Indicate if records is actually an error
+        prefix += "\n\tERROR - "
+
+    # Format for output file and return
+    expression = break_string(records, chars_per_line - len(prefix))
+    write = [prefix + expression]
+    write.append(f"Size: {len(records)} Records\n\n")
+    return write
+
+
+def format_sorted_results(line_number: int, result: List[Union[str, int]],
+                          runtime: str, error=False, chars_per_line=80) -> str:
     """
     Function that formats the inputted expression and the output given from a
     sorting process.
 
     Args:
         line_number (int): number for labelling lines in the output
-        expression (List[str]): original file records before being sorted
         result (List[str]): sorted records OR error message
-        metrics (str): string representation of Performance values (size, runtime)
+        runtime (str): current process's runtime in ns
         error (bool): indicator of whether result is an error message
+        chars_per_line (int): max width of lines in output file
 
     Returns:
         str: conditionally formatted results
     """
-    # Format header line with original expression
-    prefix = f"{line_number}. Original: "
-    expression = break_string(records, chars_per_line - len(prefix))
-    write = [prefix + expression]
-
     # Format and append result with error  handling
-    prefix = "\tError - " if error else "\tSorted: "
+    prefix = f"{line_number}. "
+    prefix += "\tError - " if error else "\tSorted: "
     result = break_string(result, chars_per_line - len(prefix))
-    write.append(prefix + result)
+    write = [prefix + result]
 
     # Add metrics and return
-    write.append(f"{metrics}\n")
+    write.append(f"Runtime: {runtime}ns\n")
 
     return '\n'.join(write)
