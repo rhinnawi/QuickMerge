@@ -13,24 +13,7 @@ Quicksort:
 		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
 		26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
 		48 49 50 
-Runtime: 400ns
-
-2. Runtime: 200ns
-
-3. Runtime: 200ns
-
-4. Runtime: 200ns
-
-5. Runtime: 200ns
-
-
-Natural Merge Sort:
-
-1. 	Sorted: 		
-		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
-		26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
-		48 49 50 
-Runtime: 100ns
+Runtime: 500ns
 
 2. Runtime: 200ns
 
@@ -41,10 +24,27 @@ Runtime: 100ns
 5. Runtime: 100ns
 
 
+Natural Merge Sort:
+
+1. 	Sorted: 		
+		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
+		26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
+		48 49 50 
+Runtime: 500ns
+
+2. Runtime: 300ns
+
+3. Runtime: 400ns
+
+4. Runtime: 200ns
+
+5. Runtime: 300ns
+
+
 -------Performance Report-------
 
 Total number of successes: 10
-[100, 100, 200, 200, 200, 200, 200, 200, 200, 400]
+[100, 200, 200, 200, 200, 300, 300, 400, 500, 500]
 -
 Total number of errors: 0
 

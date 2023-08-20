@@ -14,8 +14,9 @@ from support.output_formatters import format_sorted_results
 from support.performance import Performance
 
 
-def run_sort(line_number: int, records: List[int], performance: "Performance",
-             print_results=False, debug=False) -> Tuple[bool, str]:
+def run_quicksort(line_number: int, records: List[int],
+                  performance: "Performance", print_results=False, debug=False)\
+        -> Tuple[bool, str]:
     """
     Runner function for passed-in sort type using inputted records list.
     Returns string fromatted for output.

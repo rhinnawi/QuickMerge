@@ -13,7 +13,8 @@ from typing import TextIO, List, Union
 from support.output_formatters import write_to_output, format_original_records
 from support.format_performance_report import format_performance_report
 from support.performance import Performance
-from lab4.run_sort import run_sort
+from lab4.run_quicksort import run_quicksort
+from lab4.run_n_merge_sort import run_n_merge_sort
 
 
 def parse_all_records(input_file: TextIO) -> Union[List[int], bool]:
@@ -83,7 +84,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     # Run Quicksort
     out.append("\nQuicksort:\n")
     for line_number in range(1, RUNS_PER_SORT + 1):
-        error, result_text = run_sort(
+        error, result_text = run_quicksort(
             line_number, records, performance, print_results, debug)
         print_results = False
 
@@ -95,7 +96,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     out.append("\nNatural Merge Sort:\n")
     print_results = len(records) <= 50
     for line_number in range(1, RUNS_PER_SORT + 1):
-        error, result_text = run_sort(
+        error, result_text = run_n_merge_sort(
             line_number, records, performance, print_results, debug)
         print_results = False
 

@@ -2,34 +2,34 @@
 
 Quicksort:
 
-1. Runtime: 500ns
+1. Runtime: 700ns
 
 2. Runtime: 300ns
 
 3. Runtime: 200ns
 
-4. Runtime: 100ns
+4. Runtime: 200ns
 
-5. Runtime: 200ns
+5. Runtime: 300ns
 
 
 Natural Merge Sort:
 
-1. Runtime: 200ns
+1. Runtime: 1100ns
 
-2. Runtime: 200ns
+2. Runtime: 900ns
 
-3. Runtime: 200ns
+3. Runtime: 700ns
 
-4. Runtime: 100ns
+4. Runtime: 600ns
 
-5. Runtime: 200ns
+5. Runtime: 700ns
 
 
 -------Performance Report-------
 
 Total number of successes: 10
-[100, 100, 200, 200, 200, 200, 200, 200, 300, 500]
+[200, 200, 300, 300, 600, 700, 700, 700, 900, 1100]
 -
 Total number of errors: 0
 
