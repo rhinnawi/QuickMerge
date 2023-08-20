@@ -15,7 +15,7 @@ T = TypeVar('T')
 
 class Node:
     """
-    Simple node built for a doubly-linked list
+    Simple node built for a doubly-linked list. Methods can be chained.
     """
 
     def __init__(self, data: T) -> "Node":

@@ -15,7 +15,7 @@ T = TypeVar('T')
 
 class DoublyLinkedList:
     """
-    Doubly linked list class
+    Doubly linked list class. Methods can be chained.
     """
 
     def __init__(self) -> None:
