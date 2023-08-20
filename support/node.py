@@ -23,6 +23,81 @@ class Node:
         self._next = None
         self._prev = None
 
+    def __lt__(self, other: "Node") -> bool:
+        """
+        Less-than comparison for DoublyLinkedList Nodes. It is based on data
+        value.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is less than the other node.
+        """
+        return self._data < other.get_data()
+
+    def __gt__(self, other: "Node") -> bool:
+        """
+        Greater-than comparison for DoublyLinkedList Nodes. It is based on data
+        value.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is less than the other node.
+        """
+        return self._data > other.get_data()
+
+    def __ge__(self, other: 'Node') -> bool:
+        """
+        Greater-than-or-equal comparison for Node objects.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is greater than or equal to the other node.
+        """
+        return not self.__lt__(other)
+
+    def __le__(self, other: 'Node') -> bool:
+        """
+        Less-than-or-equal comparison for Node objects.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is greater than or equal to the other node.
+        """
+        return not self.__gt__(other)
+
+    def __eq__(self, other: 'Node') -> bool:
+        """
+        Equality comparison for Node objects. Two nodes are equal if they have
+        the same data value.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is equal to the other node.
+        """
+        return self._data == other.get_data()
+
+    def __ne__(self, other: 'Node') -> bool:
+        """
+        Inequality comparison for Node objects.
+
+        Args:
+            other (Node): The other Node with which to compare
+
+        Returns:
+            bool: True if this node is not equal to the other node.
+        """
+        return not self.__eq__(other)
+
     def set_data(self, new_data: T) -> "Node":
         """
         Setter for updating the data attribute

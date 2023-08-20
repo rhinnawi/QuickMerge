@@ -6,7 +6,7 @@ This module holds a class that implements a basic doubly linked list object.
 Author: Rani Hinnawi
 Date: 2023-08-22
 """
-from typing import List, TypeVar
+from typing import List, TypeVar, Optional
 from support.node import Node
 
 # Set up generic type for stack to remain type-agnostic
@@ -40,6 +40,24 @@ class DoublyLinkedList:
             int: size of the list
         """
         return self._size
+
+    def get_head(self) -> Optional["Node"]:
+        """
+        Getter method for retrieving node at head of the list
+
+        Returns:
+            Node: first node of list OR None if no head
+        """
+        return self._head
+
+    def get_tail(self) -> Optional["Node"]:
+        """
+        Getter method for retrieving node at tail of the list
+
+        Returns:
+            Node: last node of list OR None if no tail
+        """
+        return self._tail
 
     def append_list(self, p_list: List[T]) -> "DoublyLinkedList":
         """
@@ -98,6 +116,28 @@ class DoublyLinkedList:
 
         return new_list
 
+    def append_node(self, new_node: "Node") -> "DoublyLinkedList":
+        """
+        Method for adding a new node to the end of the linked list. The node
+        already exists as a Node object.
+        """
+        if not self._head:
+            # Case: empty list
+            self._head = new_node
+            self._tail = new_node
+        else:
+            # Default case: add to end of non-empty list
+            new_node.set_prev(self._tail)
+            self._tail.set_next(new_node)
+            self._tail = new_node
+
+        # Account for node being appended from a different list
+        new_node.set_next(None)
+
+        # Keep track of linked list size
+        self._size += 1
+        return self
+
     def append(self, data: T) -> "DoublyLinkedList":
         """
         Method for adding new item to the end of the linked list.
@@ -109,18 +149,7 @@ class DoublyLinkedList:
             DoublyLinkedList: Current linked list instance
         """
         new_node = Node(data)
-        if not self._head:
-            # Case: empty list
-            self._head = new_node
-            self._tail = new_node
-        else:
-            # Default case: add to end of non-empty list
-            new_node.set_prev(self._tail)
-            self._tail.set_next(new_node)
-            self._tail = new_node
-
-        # Keep track of linked list size
-        self._size += 1
+        return self.append_node(new_node)
 
     def remove(self, data: T) -> "DoublyLinkedList":
         """
@@ -150,3 +179,28 @@ class DoublyLinkedList:
                 return self
 
             current = current.get_next()
+
+    def remove_head_node(self) -> "Node":
+        """
+        Retrieves node at the front of the list and removes. Head pointer is
+        updated.
+
+        Returns:
+            Node: former head node
+        """
+        old_head = self._head
+
+        if not old_head:
+            # Case: empty list
+            return old_head
+
+        self._head = old_head.get_next()
+
+        # Update new head's next and prev pointers
+        if not old_head.get_next():
+            # Case: removed only item from list
+            self._tail = None
+        else:
+            old_head.get_next().set_prev(None)
+
+        return old_head
