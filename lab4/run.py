@@ -83,16 +83,25 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     # Run Quicksort
     out.append("\nQuicksort:\n")
     for line_number in range(1, RUNS_PER_SORT + 1):
-        out.append(run_sort(line_number, records, performance, print_results,
-                            debug))
+        error, result_text = run_sort(
+            line_number, records, performance, print_results, debug)
         print_results = False
+
+        out.append(result_text)
+        if error:
+            break
 
     # Run Natural Merge Sort
     out.append("\nNatural Merge Sort:\n")
     print_results = len(records) <= 50
     for line_number in range(1, RUNS_PER_SORT + 1):
-        out.append(run_sort(line_number, records, performance, print_results,
-                            debug))
+        error, result_text = run_sort(
+            line_number, records, performance, print_results, debug)
+        print_results = False
+
+        out.append(result_text)
+        if error:
+            break
 
     # Output performance report
     out.append(format_performance_report(performance))

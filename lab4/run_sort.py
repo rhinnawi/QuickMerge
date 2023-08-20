@@ -9,13 +9,13 @@ Author: Rani Hinnawi
 Date: 2023-08-22
 """
 from sys import stderr
-from typing import List
+from typing import List, Tuple
 from support.output_formatters import format_sorted_results
 from support.performance import Performance
 
 
 def run_sort(line_number: int, records: List[int], performance: "Performance",
-             print_results=False, debug=False) -> str:
+             print_results=False, debug=False) -> Tuple[bool, str]:
     """
     Runner function for passed-in sort type using inputted records list.
     Returns string fromatted for output.
@@ -28,6 +28,7 @@ def run_sort(line_number: int, records: List[int], performance: "Performance",
         debug (bool): True if debug mode is toggled on, otherwise False
 
     Returns:
+        bool: True if error returned, otherwise False
         str: output string
     """
     # Set up
@@ -62,5 +63,5 @@ def run_sort(line_number: int, records: List[int], performance: "Performance",
             result = []
 
     # Return formatted results
-    return format_sorted_results(
+    return error, format_sorted_results(
         line_number, result, str(performance.get_runtime()), error)
