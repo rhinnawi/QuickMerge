@@ -9,12 +9,13 @@ Date: 2023-08-22
 """
 from typing import List
 from support.doubly_linked_list import DoublyLinkedList
-from support.node import Node
 
 
 class NaturalMergeSort:
     """
     Class for running and tracking a natural merge sort run on a Python list.
+
+    TODO: Add exchange and comparison logging
     """
 
     def __init__(self, data: List[int]) -> "NaturalMergeSort":
@@ -25,8 +26,7 @@ class NaturalMergeSort:
         self._comparisons = []
         self._exchanges = []
 
-    ##########################################################
-    def merge_sort(self) -> "DoublyLinkedList":
+    def n_merge_sort(self) -> "DoublyLinkedList":
         """
         Sort the data using an iterative natural merge sort algorithm. Data 
         has already been converted into a DoublyLinkedList. 
@@ -39,13 +39,13 @@ class NaturalMergeSort:
             return self._data
 
         # Partition into sorted runs then merge
-        runs = self.find_sorted_runs()
+        runs = self._find_sorted_runs()
         while len(runs) > 1:
-            runs = self.merge_runs(runs)
+            runs = self._merge_runs(runs)
 
         return runs[0]
 
-    def find_sorted_runs(self) -> List["DoublyLinkedList"]:
+    def _find_sorted_runs(self) -> List["DoublyLinkedList"]:
         """
         Find and return a list of sorted runs in the data.
 
@@ -54,37 +54,26 @@ class NaturalMergeSort:
         """
         runs = []
         current = self._data.get_head()
+
+        # Cycle through data and identify runs. Add runs as smaller lists
         while current:
-            start = current
-            while current.get_next() and \
-                    current.get_next().get_data() >= current.get_data():
+            sorted_run = DoublyLinkedList()
+
+            while current.get_next() and current.get_next() >= current:
+                temp = self._data.remove_head_node()
+                sorted_run.append_node(temp)
+                # Update the current pointer after removal
+                current = self._data.get_head()
+
+            runs.append(sorted_run)
+
+            if current.get_next():
+                # Case: last item might not be part of last run
                 current = current.get_next()
 
-            runs.append(DoublyLinkedList().append_list(
-                self.cut_run(start, current)))
-
-            current = current.get_next()
         return runs
 
-    def cut_run(self, start: "Node", end: "Node") -> List[int]:
-        """
-        Cut a run from the data and return it as a list.
-
-        Args:
-            start (Node): Start node of the run.
-            end (Node): End node of the run.
-
-        Returns:
-            List[int]: List containing the run data.
-        """
-        run_data = []
-        current = start
-        while current != end.get_next():
-            run_data.append(current.get_data())
-            current = current.get_next()
-        return run_data
-
-    def merge_runs(self, runs: List["DoublyLinkedList"]) \
+    def _merge_runs(self, runs: List["DoublyLinkedList"]) \
             -> List["DoublyLinkedList"]:
         """
         Merge the runs and return a new list of merged runs.
@@ -99,7 +88,7 @@ class NaturalMergeSort:
         i = 0
         while i < len(runs):
             if i + 1 < len(runs):
-                merged_run = self.merge(runs[i], runs[i + 1])
+                merged_run = self._merge(runs[i], runs[i + 1])
                 merged_runs.append(merged_run)
                 i += 2
             else:
@@ -107,7 +96,7 @@ class NaturalMergeSort:
                 i += 1
         return merged_runs
 
-    def merge(self, left: "DoublyLinkedList", right: "DoublyLinkedList") \
+    def _merge(self, left: "DoublyLinkedList", right: "DoublyLinkedList") \
             -> "DoublyLinkedList":
         """
         Merge two runs (DoublyLinkedLists) into one. This is done without
@@ -153,7 +142,6 @@ class NaturalMergeSort:
         # Return merged list
         return merged_run
 
-    ##########################################################################
     def get_num_comparisons(self) -> int:
         """
         Method for indicating the number of comparisons that occurred during
