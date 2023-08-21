@@ -1,0 +1,88 @@
+-------Quicksort and Natural Merge Sort Results-------
+Original: 		
+		5 6 7 8 3 4 3 8 9 
+Size: 9 Records
+
+
+-----Quicksort:
+
+1. 	Sorted: 		
+		3 3 4 5 6 7 8 8 9 
+Runtime: 28μs
+Pivot type: first
+Insertion Sort Threshold: 2
+Comparisons: 21
+Exchanges: 25
+All Comparisons:		
+		(0, 8) (3, 5) (4, 5) (3, 5) (4, 8) (8, 9) (6, 9) (7, 9) (8, 9) 
+		(4, 7) (8, 8) (6, 8) (7, 8) (4, 6) (7, 8) (6, 8) (4, 5) (2, 2) 
+		(7, 4) (0, 2) (3, 3) 
+All Exchanges:		
+		(5, 9) (9, 3) (6, 4) (7, 3) (8, 5) (9, 8) (8, 8) (6, 6) (7, 7) 
+		(8, 8) (9, 9) (8, 8) (8, 8) (6, 6) (7, 7) (8, 8) (8, 7) (7, 7) 
+		(6, 6) (8, 8) (6, 7) (7, 6) (3, 3) (3, 3) (4, 3) 
+
+
+2. Runtime: 5μs
+Pivot type: first
+Insertion Sort Threshold: 100
+Comparisons: 2
+Exchanges: 8
+
+
+3. Runtime: 4μs
+Pivot type: first
+Insertion Sort Threshold: 50
+Comparisons: 2
+Exchanges: 8
+
+
+4. Runtime: 19μs
+Pivot type: median_of_three
+Insertion Sort Threshold: 2
+Comparisons: 14
+Exchanges: 15
+
+
+-----Natural Merge Sort:
+
+1. 	Sorted: 		
+		3 3 4 5 6 7 8 8 9 
+Runtime: 34μs
+Comparisons: 8
+Exchanges: 0
+All Comparisons:		
+		(3, 3) (3, 4) (4, 5) (5, 6) (6, 7) (7, 8) (8, 8) (8, 9) 
+
+
+2. Runtime: 19μs
+Comparisons: 8
+Exchanges: 0
+
+
+3. Runtime: 17μs
+Comparisons: 8
+Exchanges: 0
+
+
+4. Runtime: 17μs
+Comparisons: 8
+Exchanges: 0
+
+
+5. Runtime: 17μs
+Comparisons: 8
+Exchanges: 0
+
+
+-------Performance Report-------
+
+Total number of successes: 9
+[4, 5, 17, 17, 17, 19, 19, 28, 34]
+-
+Total number of errors: 0
+
+Format:
+	[runtime1, ..., runtimeN]
+	NOTE: Runtimes measured in microseconds (μs)
+Done.
