@@ -50,8 +50,10 @@ class Quicksort:
                             (high - low + 1, self._insertion_threshold))
                     self._num_comparisons += 1
 
+                    # Run insertion sort on partition
                     self._insertion_sort(low, high)
                 else:
+                    # Partition size > insertion threshold
                     pivot_index = self._choose_pivot(low, high)
                     pivot_index = self._partition(low, high, pivot_index)
                     stack.append((low, pivot_index - 1))
