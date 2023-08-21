@@ -14,8 +14,6 @@ from support.doubly_linked_list import DoublyLinkedList
 class NaturalMergeSort:
     """
     Class for running and tracking a natural merge sort run on a Python list.
-
-    TODO: Add exchange and comparison logging
     """
 
     def __init__(self, data: List[int]) -> "NaturalMergeSort":
@@ -62,7 +60,7 @@ class NaturalMergeSort:
             while current and (not current.get_next() or
                                current.get_next() >= current):
                 # Log comparison
-                if current.get_next():
+                if current.get_next() and self._illustrate_merge:
                     self._comparisons.append((current.get_data(),
                                               current.get_next().get_data()))
                     self._num_comparisons += 1
@@ -118,8 +116,9 @@ class NaturalMergeSort:
 
         while left_node and right_node:
             # Log the comparison
-            self._comparisons.append((left_node.get_data(),
-                                      right_node.get_data()))
+            if self._illustrate_merge:
+                self._comparisons.append((left_node.get_data(),
+                                          right_node.get_data()))
             self._num_comparisons += 1
 
             if left_node <= right_node:
@@ -134,7 +133,9 @@ class NaturalMergeSort:
                 merged_run.append_node(temp)
 
                 # Log exchange: a farther-right number is being moved forward
-                self._exchanges.append((left_node.get_data(), temp.get_data()))
+                if self._illustrate_merge:
+                    self._exchanges.append((left_node.get_data(),
+                                            temp.get_data()))
                 self._num_exchanges += 1
 
         while left_node:
