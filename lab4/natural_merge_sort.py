@@ -58,18 +58,16 @@ class NaturalMergeSort:
         # Cycle through data and identify runs. Add runs as smaller lists
         while current:
             sorted_run = DoublyLinkedList()
+            print(current.get_data())
 
-            while current.get_next() and current.get_next() >= current:
+            while current and (not current.get_next() or
+                               current.get_next() >= current):
                 temp = self._data.remove_head_node()
                 sorted_run.append_node(temp)
                 # Update the current pointer after removal
                 current = self._data.get_head()
 
             runs.append(sorted_run)
-
-            if current.get_next():
-                # Case: last item might not be part of last run
-                current = current.get_next()
 
         return runs
 

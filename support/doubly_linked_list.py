@@ -30,7 +30,7 @@ class DoublyLinkedList:
         Returns:
             str: string representation of list
         """
-        return ", ".join(self.to_list)
+        return ", ".join(list(map(str, self.to_list())))
 
     def __len__(self) -> int:
         """

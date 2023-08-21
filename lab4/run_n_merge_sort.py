@@ -42,7 +42,7 @@ def run_n_merge_sort(line_number: int, records: List[int],
     performance.set_size(len(records)).start()
 
     try:
-        result = n_merge_sort.merge_sort()
+        result = n_merge_sort.n_merge_sort()
     except ValueError as ve:
         # Ensure error message gets printed to output file
         result = ve.args[0].split()
