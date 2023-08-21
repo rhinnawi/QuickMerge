@@ -7,7 +7,7 @@ the number of exchanges and comparisons done.
 Author: Rani Hinnawi
 Date: 2023-08-22
 """
-from typing import List
+from typing import List, Tuple
 from support.doubly_linked_list import DoublyLinkedList
 
 
@@ -58,10 +58,15 @@ class NaturalMergeSort:
         # Cycle through data and identify runs. Add runs as smaller lists
         while current:
             sorted_run = DoublyLinkedList()
-            print(current.get_data())
 
             while current and (not current.get_next() or
                                current.get_next() >= current):
+                # Log comparison
+                if current.get_next():
+                    self._comparisons.append((current.get_data(),
+                                              current.get_next().get_data()))
+                    self._num_comparisons += 1
+
                 temp = self._data.remove_head_node()
                 sorted_run.append_node(temp)
                 # Update the current pointer after removal
@@ -112,7 +117,11 @@ class NaturalMergeSort:
         right_node = right.get_head()
 
         while left_node and right_node:
+            # Log the comparison
+            self._comparisons.append((left_node.get_data(),
+                                      right_node.get_data()))
             self._num_comparisons += 1
+
             if left_node <= right_node:
                 # Case: left list head has a value <= right list's head
                 temp = left.remove_head_node()
@@ -123,6 +132,9 @@ class NaturalMergeSort:
                 temp = right.remove_head_node()
                 right_node = right.get_head()
                 merged_run.append_node(temp)
+
+                # Log exchange: a farther-right number is being moved forward
+                self._exchanges.append((left_node.get_data(), temp.get_data()))
                 self._num_exchanges += 1
 
         while left_node:
@@ -159,3 +171,23 @@ class NaturalMergeSort:
             int: number of exchanges
         """
         return self._num_exchanges
+
+    def get_comparisons(self) -> List[Tuple[int, int]]:
+        """
+        Method for retrieving all logged comparisons that occurred during
+        the sorting and merging processes
+
+        Returns:
+            int: number of comparisons
+        """
+        return self._comparisons
+
+    def get_exchanges(self) -> List[Tuple[int, int]]:
+        """
+        Method for retrieving all logged exchanges that occurred during
+        the sorting and merging processes
+
+        Returns:
+            int: number of exchanges
+        """
+        return self._exchanges

@@ -64,6 +64,8 @@ def run_n_merge_sort(line_number: int, records: List[int],
 
             # Convert back to regular Python list for output
             result = result.to_list() if print_results else []
+            print(n_merge_sort.get_num_comparisons())
+            print(n_merge_sort.get_num_exchanges())
 
     # Return formatted results
     return error, format_sorted_results(
