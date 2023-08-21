@@ -1,22 +1,20 @@
 # QuickMerge
 
-This repo contains packages and modules that implements quicksort and natural merge sort. Their performance is also compared using data from various file sizes.
+This repo contains packages and modules that implements quicksort and natural
+merge sort. Their performance is also compared using data from various file
+sizes.
 
 ## Running QuickMerge
 
 1. Download and install Python on your computer
 2. Navigate to [this](.) directory (containing the README.md)
-3. Run the program as a module: `python -m hencoding -h`. This will print the help
+3. Run the program as a module: `python -m lab4 -h`. This will print the help
    message.
 4. Run the program as a module (with real inputs):
-   `python -m hencoding <some_input_file> <some_output_file> --encode/--decode`
-   - Example: `python -m hencoding resources/input.txt resources/output.txt --encode`
+   `python -m lab4 <some_input_file> <some_output_file>`
+   - Example: `python -m lab4 resources/input.txt resources/output.txt`
    - Optional - run the program as a module with errors outputted to stderr:
-     `python -m hencoding <some_input_file> <some_output_file> --decode --debug`
-   - Optional - run the program as a module using multiple optional arguments:
-     `python -m hencoding <some_input_file> <some_output_file> --encode --memo`
-   - Optional - run the program as a module using optional file:
-     `python -m hencoding <some_input_file> <some_output_file> --encode --frequency_table <some_frequency_table_file>`
+     `python -m lab4 <some_input_file> <some_output_file> --debug`
 
 Output will be written to the specified output file after processing the input
 file.
@@ -24,8 +22,7 @@ file.
 ### QuickMerge Usage:
 
 ```commandline
-usage: python -m hencoding [-h] in_file out_file [--frequency_table] frequency_table
-        [--debug] [--memoize] [--encode] [--decode]
+usage: python -m lab4 [-h] in_file out_file [--debug]
 
 positional arguments:
   in_file     Input File Pathname
@@ -33,15 +30,7 @@ positional arguments:
 
 optional arguments:
   --debug             Toggles debug mode to log errors to stderr
-  --frequency_table   Followed by custom frequency table file pathname
-  --memoize           Toggles on memoization for encoding
-  --encode            Indicates to encode input file strings
-  --decode            Indicates to decode input file strings
   -h, --help          show this help message and exit
-
-  NOTE: Either [--encode] or [--decode] must be toggled, not neither nor both
-  at once. The option [--memo] may be run with both but will not affect
-  decoding process.
 ```
 
 Usage statements reference
@@ -56,22 +45,22 @@ Usage statements reference
 
 ### Project Layout
 
-- [Huffman_Encoding/](.): The parent or "root" folder containing all of these
+- [QuickMerge/](.): The parent or "root" folder containing all of these
   files
   - [README.md](README.md):
     The guide you're reading.
-  - [hencoding](hencoding):
+  - [lab4](lab4):
     This is the _package_.
-    - [`__init__.py`](hencoding/__init__.py)
+    - [`__init__.py`](lab4/__init__.py)
       This contains the functionality that is automatically run when importing
       the package
-    - [`__main__.py`](hencoding/__main__.py)
-      This file is the entrypoint to the hencoding package when run as a program
+    - [`__main__.py`](lab4/__main__.py)
+      This file is the entrypoint to the lab4 package when run as a program
     - `*.py`
       These are Python scripts that do the actual work
   - [support](support):
     This is a separate package for supporting modules not directly involved in
-    encoding / decoding.
+    sorting.
     - [`__init__.py`](support/__init__.py)
       This contains the functionality that is automatically run when importing
       the package
