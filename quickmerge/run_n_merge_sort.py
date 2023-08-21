@@ -1,24 +1,23 @@
 """
-run_sort
+run_n_merge_sort
 
-This module contains the wrapper function for running a sorting algorithm. 
-While running, it logs performance metrics. It also accounts for possible 
-errors and incorporates them into output text. Output text is returned.
+This module contains the wrapper function for running the natural merge sort
+algorithm. While running, it logs performance metrics. It also accounts for 
+possible errors and incorporates them into output text. Output is returned.
 
 Author: Rani Hinnawi
 Date: 2023-08-22
 """
 from sys import stderr
 from typing import List, Tuple
-from lab4.quicksort import Quicksort
+from quickmerge.natural_merge_sort import NaturalMergeSort
 from support.output_formatters import format_sorted_results, format_logs
 from support.performance import Performance
 
 
-def run_quicksort(line_number: int, records: List[int],
-                  insertion_threshold: int, performance: "Performance",
-                  print_results=False, pivot_option="first", debug=False)\
-        -> Tuple[bool, str]:
+def run_n_merge_sort(line_number: int, records: List[int],
+                     performance: "Performance", print_results=False,
+                     debug=False) -> Tuple[bool, str]:
     """
     Runner function for passed-in sort type using inputted records list.
     Returns string fromatted for output.
@@ -34,19 +33,19 @@ def run_quicksort(line_number: int, records: List[int],
         bool: True if error returned, otherwise False
         str: output string
     """
-    # Set up
+    # Set up. Will run within NatuarlMergeSort object
     result = []
     comparisons = []
     exchanges = []
     error = False
-    quicksort = Quicksort(records, pivot_option, insertion_threshold)
-    MAX_LOG_LENGTH = 100
+    n_merge_sort = NaturalMergeSort(records)
+    MAX_LOG_LENGTH = 50
 
     # Set up error handling and performance metrics
     performance.set_size(len(records)).start()
 
     try:
-        result = quicksort.q_sort()
+        result = n_merge_sort.n_merge_sort()
     except ValueError as ve:
         # Ensure error message gets printed to output file
         result = ve.args[0].split()
@@ -70,8 +69,9 @@ def run_quicksort(line_number: int, records: List[int],
             if not print_results:
                 result = []
             else:
-                comparisons = quicksort.get_comparisons()
-                exchanges = quicksort.get_exchanges()
+                result = result.to_list()
+                comparisons = n_merge_sort.get_comparisons()
+                exchanges = n_merge_sort.get_exchanges()
 
     # Cap comparison and exchange lists for readability
     if len(comparisons) > MAX_LOG_LENGTH:
@@ -85,12 +85,9 @@ def run_quicksort(line_number: int, records: List[int],
     # Set up and return output text
     output_text = format_sorted_results(
         line_number, result, str(performance.get_runtime_micro_sec()), error)
-
-    output_text += f"\nPivot type: {pivot_option}"
-    output_text += f"\nInsertion Sort Threshold: {insertion_threshold}"
     output_text += format_logs(comparisons, exchanges,
-                               quicksort.get_num_comparisons(),
-                               quicksort.get_num_exchanges())
+                               n_merge_sort.get_num_comparisons(),
+                               n_merge_sort.get_num_exchanges())
 
     # Return formatted results
     return error, output_text

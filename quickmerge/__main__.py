@@ -4,7 +4,7 @@ __main__
 This is the entry point for the QuickMerge package. It runs when explicity 
 called and not by default when the package is imported. It can be called by the
 command: 
-python -m lab4 input_file output_file [...optional arguments]
+python -m quickmerge input_file output_file [...optional arguments]
 
 The primary functionality lies in the package modules, and not directly in the
 main module here.
@@ -16,7 +16,7 @@ from sys import stderr
 from pathlib import Path
 import argparse
 from support.is_valid_io import is_valid_io
-from lab4.run import run
+from quickmerge.run import run
 
 DEFAULT_FREQUENCY_TABLE_PATH = "hencoding/DefaultFreqTable.txt"
 

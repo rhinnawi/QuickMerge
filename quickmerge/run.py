@@ -13,8 +13,8 @@ from typing import TextIO, List, Union
 from support.output_formatters import write_to_output, format_original_records
 from support.format_performance_report import format_performance_report
 from support.performance import Performance
-from lab4.run_quicksort import run_quicksort
-from lab4.run_n_merge_sort import run_n_merge_sort
+from quickmerge.run_quicksort import run_quicksort
+from quickmerge.run_n_merge_sort import run_n_merge_sort
 
 
 def parse_all_records(input_file: TextIO) -> Union[List[int], bool]:
