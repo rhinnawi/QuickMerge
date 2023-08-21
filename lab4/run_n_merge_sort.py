@@ -39,6 +39,7 @@ def run_n_merge_sort(line_number: int, records: List[int],
     exchanges = []
     error = False
     n_merge_sort = NaturalMergeSort(records)
+    MAX_LOG_LENGTH = 50
 
     # Set up error handling and performance metrics
     performance.set_size(len(records)).start()
@@ -72,6 +73,16 @@ def run_n_merge_sort(line_number: int, records: List[int],
                 comparisons = n_merge_sort.get_comparisons()
                 exchanges = n_merge_sort.get_exchanges()
 
+    # Cap comparison and exchange lists for readability
+    if len(comparisons) > MAX_LOG_LENGTH:
+        comparisons = comparisons[:MAX_LOG_LENGTH]
+        comparisons.append("...")
+
+    if len(exchanges) > MAX_LOG_LENGTH:
+        exchanges = exchanges[:MAX_LOG_LENGTH]
+        exchanges.append("...")
+
+    # Set up and return output text
     output_text = format_sorted_results(
         line_number, result, str(performance.get_runtime_micro_sec()), error)
     output_text += format_logs(comparisons, exchanges,

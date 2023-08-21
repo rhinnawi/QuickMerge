@@ -100,18 +100,19 @@ class Quicksort:
                 self._num_comparisons += 1
 
                 # Move the element to the right and log exchange
-                self._data[j + 1] = self._data[j]
                 if self._illustrate_sort:
                     self._exchanges.append((self._data[j + 1], self._data[j]))
                 self._num_exchanges += 1
 
+                self._data[j + 1] = self._data[j]
                 j -= 1
 
             # Insert key at correct position and log exchange
-            self._data[j + 1] = key
             if self._illustrate_sort:
                 self._exchanges.append((self._data[j + 1], key))
             self._num_exchanges += 1
+
+            self._data[j + 1] = key
 
         return self
 

@@ -16,7 +16,8 @@ from support.performance import Performance
 
 
 def run_quicksort(line_number: int, records: List[int],
-                  performance: "Performance", print_results=False, debug=False)\
+                  insertion_threshold: int, performance: "Performance",
+                  print_results=False, pivot_option="first", debug=False)\
         -> Tuple[bool, str]:
     """
     Runner function for passed-in sort type using inputted records list.
@@ -38,7 +39,8 @@ def run_quicksort(line_number: int, records: List[int],
     comparisons = []
     exchanges = []
     error = False
-    quicksort = Quicksort(records)
+    quicksort = Quicksort(records, pivot_option, insertion_threshold)
+    MAX_LOG_LENGTH = 100
 
     # Set up error handling and performance metrics
     performance.set_size(len(records)).start()
@@ -71,8 +73,21 @@ def run_quicksort(line_number: int, records: List[int],
                 comparisons = quicksort.get_comparisons()
                 exchanges = quicksort.get_exchanges()
 
+    # Cap comparison and exchange lists for readability
+    if len(comparisons) > MAX_LOG_LENGTH:
+        comparisons = comparisons[:MAX_LOG_LENGTH]
+        comparisons.append("...")
+
+    if len(exchanges) > MAX_LOG_LENGTH:
+        exchanges = exchanges[:MAX_LOG_LENGTH]
+        exchanges.append("...")
+
+    # Set up and return output text
     output_text = format_sorted_results(
         line_number, result, str(performance.get_runtime_micro_sec()), error)
+
+    output_text += f"\nPivot type: {pivot_option}"
+    output_text += f"\nInsertion Sort Threshold: {insertion_threshold}"
     output_text += format_logs(comparisons, exchanges,
                                quicksort.get_num_comparisons(),
                                quicksort.get_num_exchanges())

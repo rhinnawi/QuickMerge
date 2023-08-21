@@ -141,12 +141,11 @@ def format_logs(comparisons: List[Tuple[int, int]],
         prefix = "All Comparisons:"
         output_text.append(prefix + break_string(comparisons,
                                                  chars_per_line - len(prefix)))
-        output_text.append('\n')
 
     if len(exchanges) > 0:
         # Add to output text if comparisons are being added to the output
-        prefix = "\nAll Exchanges:"
+        prefix = "All Exchanges:"
         output_text.append(prefix + break_string(exchanges,
                                                  chars_per_line - len(prefix)))
 
-    return '\n'.join(output_text)
+    return '\n'.join(output_text) + '\n'

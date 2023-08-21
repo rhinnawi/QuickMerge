@@ -1,39 +1,72 @@
 -------Quicksort and Natural Merge Sort Results-------
-
-Quicksort:
-
-1. Runtime: 700ns
-
-2. Runtime: 300ns
-
-3. Runtime: 200ns
-
-4. Runtime: 200ns
-
-5. Runtime: 300ns
+Size: 1000 Records
 
 
-Natural Merge Sort:
+-----Quicksort:
 
-1. Runtime: 1100ns
+1. Runtime: 27257μs
+Pivot type: first
+Insertion Sort Threshold: 2
+Comparisons: 1000
+Exchanges: 1997
 
-2. Runtime: 900ns
 
-3. Runtime: 700ns
+2. Runtime: 25915μs
+Pivot type: first
+Insertion Sort Threshold: 100
+Comparisons: 902
+Exchanges: 1899
 
-4. Runtime: 600ns
 
-5. Runtime: 700ns
+3. Runtime: 25193μs
+Pivot type: first
+Insertion Sort Threshold: 50
+Comparisons: 952
+Exchanges: 1949
+
+
+4. Runtime: 3150μs
+Pivot type: median_of_three
+Insertion Sort Threshold: 2
+Comparisons: 4472
+Exchanges: 4937
+
+
+-----Natural Merge Sort:
+
+1. Runtime: 1308μs
+Comparisons: 0
+Exchanges: 0
+
+
+2. Runtime: 1340μs
+Comparisons: 0
+Exchanges: 0
+
+
+3. Runtime: 1269μs
+Comparisons: 0
+Exchanges: 0
+
+
+4. Runtime: 1350μs
+Comparisons: 0
+Exchanges: 0
+
+
+5. Runtime: 1339μs
+Comparisons: 0
+Exchanges: 0
 
 
 -------Performance Report-------
 
-Total number of successes: 10
-[200, 200, 300, 300, 600, 700, 700, 700, 900, 1100]
+Total number of successes: 9
+[1269, 1308, 1339, 1340, 1350, 3150, 25193, 25915, 27257]
 -
 Total number of errors: 0
 
 Format:
 	[runtime1, ..., runtimeN]
-	NOTE: Runtimes measured in nanoseconds (ns)
+	NOTE: Runtimes measured in microseconds (μs)
 Done.

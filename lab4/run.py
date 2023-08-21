@@ -71,6 +71,8 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
     out.append("-------Quicksort and Natural Merge Sort Results-------")
     if print_results:
         out.extend(format_original_records(records, error))
+    else:
+        out.append(f"Size: {len(records)} Records\n")
 
     if error:
         # Output results
@@ -81,11 +83,17 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
 
         return
 
-    # Run Quicksort
+    # Run Quicksort using specified settings
     out.append("\n-----Quicksort:")
-    for line_number in range(1, RUNS_PER_SORT + 1):
+    qs_settings = {
+        "pivot": ["first", "first", "first", "median_of_three"],
+        "insertion_threshold": [2, 100, 50, 2]}
+
+    for line_number in range(1, RUNS_PER_SORT):
+        i = line_number - 1
         error, result_text = run_quicksort(
-            line_number, records, performance, print_results, debug)
+            line_number, records, qs_settings["insertion_threshold"][i],
+            performance, print_results, qs_settings["pivot"][i], debug)
         print_results = False
 
         out.append(result_text)
