@@ -10,7 +10,8 @@ Date: 2023-08-22
 """
 from sys import stderr
 from typing import List, Tuple
-from support.output_formatters import format_sorted_results
+from lab4.quicksort import Quicksort
+from support.output_formatters import format_sorted_results, format_logs
 from support.performance import Performance
 
 
@@ -34,13 +35,16 @@ def run_quicksort(line_number: int, records: List[int],
     """
     # Set up
     result = []
+    comparisons = []
+    exchanges = []
     error = False
+    quicksort = Quicksort(records)
 
     # Set up error handling and performance metrics
     performance.set_size(len(records)).start()
 
     try:
-        result = records
+        result = quicksort.q_sort()
     except ValueError as ve:
         # Ensure error message gets printed to output file
         result = ve.args[0].split()
@@ -60,9 +64,18 @@ def run_quicksort(line_number: int, records: List[int],
         else:
             performance.log_success()
 
-        if not print_results:
-            result = []
+            # Convert back to regular Python list for output
+            if not print_results:
+                result = []
+            else:
+                comparisons = quicksort.get_comparisons()
+                exchanges = quicksort.get_exchanges()
+
+    output_text = format_sorted_results(
+        line_number, result, str(performance.get_runtime_micro_sec()), error)
+    output_text += format_logs(comparisons, exchanges,
+                               quicksort.get_num_comparisons(),
+                               quicksort.get_num_exchanges())
 
     # Return formatted results
-    return error, format_sorted_results(
-        line_number, result, str(performance.get_runtime_micro_sec()), error)
+    return error, output_text
