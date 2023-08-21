@@ -73,7 +73,7 @@ def run_n_merge_sort(line_number: int, records: List[int],
                 exchanges = n_merge_sort.get_exchanges()
 
     output_text = format_sorted_results(
-        line_number, result, str(performance.get_runtime()), error)
+        line_number, result, str(performance.get_runtime_micro_sec()), error)
     output_text += format_logs(comparisons, exchanges,
                                n_merge_sort.get_num_comparisons(),
                                n_merge_sort.get_num_exchanges())

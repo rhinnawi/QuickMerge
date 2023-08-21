@@ -34,8 +34,15 @@ def format_performance_report(metrics: 'Performance', micro_sec=False) -> str:
 
     successes = metrics.get_successes()
     for size in sorted(successes.keys()):
-        runtime = sorted(successes[size])
-        write.append(str(runtime))
+        runtimes = sorted(successes[size])
+
+        if micro_sec:
+            # If measurements are in micro-seconds, convert runtimes
+            for i, time in enumerate(runtimes):
+                time /= 1000
+                runtimes[i] = int(time)
+
+        write.append(str(runtimes))
 
     write.append("-")
 
@@ -45,6 +52,13 @@ def format_performance_report(metrics: 'Performance', micro_sec=False) -> str:
     errors = metrics.get_errors()
     for size in sorted(errors.keys()):
         runtime = sorted(errors[size])
+
+        if micro_sec:
+            # If measurements are in micro-seconds, convert runtimes
+            for i, time in enumerate(runtimes):
+                time /= 1000
+                runtimes[i] = int(time)
+
         write.append(str(runtime))
 
     write.append("\nFormat:\n\t[runtime1, ..., runtimeN]")

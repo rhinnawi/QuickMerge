@@ -6,22 +6,21 @@ Original:
 Size: 50 Records
 
 
-
 -----Quicksort:
 
 1. 	Sorted: 		
 		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
 		26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
 		48 49 50 
-Runtime: 400ns
+Runtime: 0μs
 
-2. Runtime: 300ns
+2. Runtime: 0μs
 
-3. Runtime: 200ns
+3. Runtime: 0μs
 
-4. Runtime: 100ns
+4. Runtime: 0μs
 
-5. Runtime: 200ns
+5. Runtime: 0μs
 
 -----Natural Merge Sort:
 
@@ -29,7 +28,7 @@ Runtime: 400ns
 		1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 
 		26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 
 		48 49 50 
-Runtime: 94000ns
+Runtime: 95μs
 Comparisons: 49
 Exchanges: 0
 All Comparisons:		
@@ -43,30 +42,30 @@ All Comparisons:
 
 
 
-2. Runtime: 90400ns
+2. Runtime: 87μs
 Comparisons: 49
 Exchanges: 0
 
-3. Runtime: 92000ns
+3. Runtime: 86μs
 Comparisons: 49
 Exchanges: 0
 
-4. Runtime: 86400ns
+4. Runtime: 79μs
 Comparisons: 49
 Exchanges: 0
 
-5. Runtime: 101000ns
+5. Runtime: 81μs
 Comparisons: 49
 Exchanges: 0
 
 -------Performance Report-------
 
 Total number of successes: 10
-[100, 200, 200, 300, 400, 86400, 90400, 92000, 94000, 101000]
+[0, 0, 0, 0, 0, 79, 81, 86, 87, 95]
 -
 Total number of errors: 0
 
 Format:
 	[runtime1, ..., runtimeN]
-	NOTE: Runtimes measured in nanoseconds (ns)
+	NOTE: Runtimes measured in microseconds (μs)
 Done.

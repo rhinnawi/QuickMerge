@@ -105,7 +105,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
             break
 
     # Output performance report
-    out.append(format_performance_report(performance))
+    out.append(format_performance_report(performance, micro_sec=True))
 
     # Output results
     write_to_output(output_file, out)

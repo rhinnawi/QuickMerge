@@ -82,7 +82,7 @@ def format_original_records(records: List[int], error=False, chars_per_line=80)\
     # Format for output file and return
     expression = break_string(records, chars_per_line - len(prefix))
     write = [prefix + expression]
-    write.append(f"Size: {len(records)} Records\n\n")
+    write.append(f"Size: {len(records)} Records\n")
     return write
 
 
@@ -95,7 +95,7 @@ def format_sorted_results(line_number: int, result: List[Union[str, int]],
     Args:
         line_number (int): number for labelling lines in the output
         result (List[str]): sorted records OR error message
-        runtime (str): current process's runtime in ns
+        runtime (str): current process's runtime in μs
         error (bool): indicator of whether result is an error message
         chars_per_line (int): max width of lines in output file
 
@@ -112,7 +112,7 @@ def format_sorted_results(line_number: int, result: List[Union[str, int]],
         output_text += '\n'
 
     # Add metrics and return
-    output_text += f"Runtime: {runtime}ns"
+    output_text += f"Runtime: {runtime}μs"
     return output_text
 
 

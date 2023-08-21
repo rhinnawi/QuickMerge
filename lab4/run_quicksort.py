@@ -65,4 +65,4 @@ def run_quicksort(line_number: int, records: List[int],
 
     # Return formatted results
     return error, format_sorted_results(
-        line_number, result, str(performance.get_runtime()), error)
+        line_number, result, str(performance.get_runtime_micro_sec()), error)
