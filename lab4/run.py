@@ -82,7 +82,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
         return
 
     # Run Quicksort
-    out.append("\nQuicksort:\n")
+    out.append("\n-----Quicksort:")
     for line_number in range(1, RUNS_PER_SORT + 1):
         error, result_text = run_quicksort(
             line_number, records, performance, print_results, debug)
@@ -93,7 +93,7 @@ def run(input_file: TextIO, output_file: TextIO, debug=False):
             break
 
     # Run Natural Merge Sort
-    out.append("\nNatural Merge Sort:\n")
+    out.append("\n-----Natural Merge Sort:")
     print_results = len(records) <= 50
     for line_number in range(1, RUNS_PER_SORT + 1):
         error, result_text = run_n_merge_sort(

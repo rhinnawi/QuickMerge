@@ -11,7 +11,7 @@ Date: 2023-08-22
 from sys import stderr
 from typing import List, Tuple
 from lab4.natural_merge_sort import NaturalMergeSort
-from support.output_formatters import format_sorted_results
+from support.output_formatters import format_sorted_results, format_logs
 from support.performance import Performance
 
 
@@ -35,6 +35,8 @@ def run_n_merge_sort(line_number: int, records: List[int],
     """
     # Set up. Will run within NatuarlMergeSort object
     result = []
+    comparisons = []
+    exchanges = []
     error = False
     n_merge_sort = NaturalMergeSort(records)
 
@@ -63,10 +65,18 @@ def run_n_merge_sort(line_number: int, records: List[int],
             performance.log_success()
 
             # Convert back to regular Python list for output
-            result = result.to_list() if print_results else []
-            print(n_merge_sort.get_num_comparisons())
-            print(n_merge_sort.get_num_exchanges())
+            if not print_results:
+                result = []
+            else:
+                result = result.to_list()
+                comparisons = n_merge_sort.get_comparisons()
+                exchanges = n_merge_sort.get_exchanges()
+
+    output_text = format_sorted_results(
+        line_number, result, str(performance.get_runtime()), error)
+    output_text += format_logs(comparisons, exchanges,
+                               n_merge_sort.get_num_comparisons(),
+                               n_merge_sort.get_num_exchanges())
 
     # Return formatted results
-    return error, format_sorted_results(
-        line_number, result, str(performance.get_runtime()), error)
+    return error, output_text

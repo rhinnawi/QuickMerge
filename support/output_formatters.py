@@ -7,7 +7,7 @@ outputted to a text file.
 Author: Rani Hinnawi
 Date: 2023-08-08
 """
-from typing import TextIO, List, Union
+from typing import TextIO, List, Tuple, Union
 
 
 def write_to_output(output_file: TextIO, output_text: List[str]) -> None:
@@ -103,7 +103,7 @@ def format_sorted_results(line_number: int, result: List[Union[str, int]],
         str: conditionally formatted results
     """
     # Format and append result with error  handling
-    output_text = f"{line_number}. "
+    output_text = f"\n{line_number}. "
 
     if len(result) > 0:
         # Add to output text if results are being added to the output
@@ -112,5 +112,41 @@ def format_sorted_results(line_number: int, result: List[Union[str, int]],
         output_text += '\n'
 
     # Add metrics and return
-    output_text += f"Runtime: {runtime}ns\n"
+    output_text += f"Runtime: {runtime}ns"
     return output_text
+
+
+def format_logs(comparisons: List[Tuple[int, int]],
+                exchanges: List[Tuple[int, int]], num_comparisons: int,
+                num_exchanges: int, chars_per_line=80) -> str:
+    """
+    Function that formats the comparisons and exchanges logged
+
+    Args:
+        comparisons (List[Tuple[int, int]]): tuples of comparisons logged
+        exchanges (List[Tuple[int, int]]): tuples of exchanges logged
+        num_comparisons (int): number of comparisons logged
+        num_exchanges (int): number of exchanges logged
+        chars_per_line (int): max width of lines in output file
+
+    Returns:
+        str: conditionally formatted results
+    """
+    # Format and append result with error  handling
+    output_text = [f"\nComparisons: {num_comparisons}",
+                   f"Exchanges: {num_exchanges}"]
+
+    if len(comparisons) > 0:
+        # Add to output text if comparisons are being added to the output
+        prefix = "All Comparisons:"
+        output_text.append(prefix + break_string(comparisons,
+                                                 chars_per_line - len(prefix)))
+        output_text.append('\n')
+
+    if len(exchanges) > 0:
+        # Add to output text if comparisons are being added to the output
+        prefix = "\nAll Exchanges:"
+        output_text.append(prefix + break_string(exchanges,
+                                                 chars_per_line - len(prefix)))
+
+    return '\n'.join(output_text)
