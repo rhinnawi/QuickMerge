@@ -64,7 +64,7 @@ class NaturalMergeSort:
                 if current.get_next() and self._illustrate_merge:
                     self._comparisons.append((current.get_data(),
                                               current.get_next().get_data()))
-                    self._num_comparisons += 1
+                self._num_comparisons += 1
 
                 temp = self._data.remove_head_node()
                 sorted_run.append_node(temp)

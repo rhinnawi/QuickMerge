@@ -179,8 +179,11 @@ class Quicksort:
         Returns:
             Quicksort: current object instance
         """
+        # Log exchange
+        if self._illustrate_sort:
+            self._exchanges.append((self._data[i], self._data[j]))
         self._num_exchanges += 1
-        self._exchanges.append((self._data[i], self._data[j]))
+
         self._data[i], self._data[j] = self._data[j], self._data[i]
         return self
 

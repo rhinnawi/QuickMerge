@@ -4,28 +4,28 @@ Size: 5000 Records
 
 -----Quicksort:
 
-1. Runtime: 28072μs
+1. Runtime: 21754μs
 Pivot type: first
 Insertion Sort Threshold: 2
 Comparisons: 45283
 Exchanges: 46895
 
 
-2. Runtime: 509947μs
+2. Runtime: 555574μs
 Pivot type: first
 Insertion Sort Threshold: 100
 Comparisons: 4928
 Exchanges: 9304
 
 
-3. Runtime: 526717μs
+3. Runtime: 557771μs
 Pivot type: first
 Insertion Sort Threshold: 50
 Comparisons: 4978
 Exchanges: 9347
 
 
-4. Runtime: 19335μs
+4. Runtime: 15719μs
 Pivot type: median_of_three
 Insertion Sort Threshold: 2
 Comparisons: 29003
@@ -34,35 +34,35 @@ Exchanges: 30153
 
 -----Natural Merge Sort:
 
-1. Runtime: 7067μs
-Comparisons: 0
+1. Runtime: 7620μs
+Comparisons: 5000
 Exchanges: 0
 
 
-2. Runtime: 6774μs
-Comparisons: 0
+2. Runtime: 7452μs
+Comparisons: 5000
 Exchanges: 0
 
 
-3. Runtime: 6863μs
-Comparisons: 0
+3. Runtime: 8203μs
+Comparisons: 5000
 Exchanges: 0
 
 
-4. Runtime: 6539μs
-Comparisons: 0
+4. Runtime: 7762μs
+Comparisons: 5000
 Exchanges: 0
 
 
-5. Runtime: 6329μs
-Comparisons: 0
+5. Runtime: 7216μs
+Comparisons: 5000
 Exchanges: 0
 
 
 -------Performance Report-------
 
 Total number of successes: 9
-[6329, 6539, 6774, 6863, 7067, 19335, 28072, 509947, 526717]
+[7216, 7452, 7620, 7762, 8203, 15719, 21754, 555574, 557771]
 -
 Total number of errors: 0
 

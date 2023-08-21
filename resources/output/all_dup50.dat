@@ -10,7 +10,7 @@ Size: 50 Records
 1. 	Sorted: 		
 		5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
 		5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-Runtime: 1219μs
+Runtime: 2041μs
 Pivot type: first
 Insertion Sort Threshold: 2
 Comparisons: 1274
@@ -43,21 +43,21 @@ All Exchanges:
 		(5, 5) ... 
 
 
-2. Runtime: 17μs
+2. Runtime: 18μs
 Pivot type: first
 Insertion Sort Threshold: 100
 Comparisons: 2
 Exchanges: 49
 
 
-3. Runtime: 15μs
+3. Runtime: 16μs
 Pivot type: first
 Insertion Sort Threshold: 50
 Comparisons: 2
 Exchanges: 49
 
 
-4. Runtime: 735μs
+4. Runtime: 767μs
 Pivot type: median_of_three
 Insertion Sort Threshold: 2
 Comparisons: 1274
@@ -69,8 +69,8 @@ Exchanges: 1321
 1. 	Sorted: 		
 		5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
 		5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
-Runtime: 89μs
-Comparisons: 49
+Runtime: 96μs
+Comparisons: 50
 Exchanges: 0
 All Comparisons:		
 		(5, 5) (5, 5) (5, 5) (5, 5) (5, 5) (5, 5) (5, 5) (5, 5) (5, 5) 
@@ -81,30 +81,30 @@ All Comparisons:
 		(5, 5) (5, 5) (5, 5) (5, 5) 
 
 
-2. Runtime: 86μs
-Comparisons: 49
+2. Runtime: 89μs
+Comparisons: 50
 Exchanges: 0
 
 
-3. Runtime: 87μs
-Comparisons: 49
+3. Runtime: 89μs
+Comparisons: 50
 Exchanges: 0
 
 
-4. Runtime: 82μs
-Comparisons: 49
+4. Runtime: 85μs
+Comparisons: 50
 Exchanges: 0
 
 
-5. Runtime: 103μs
-Comparisons: 49
+5. Runtime: 84μs
+Comparisons: 50
 Exchanges: 0
 
 
 -------Performance Report-------
 
 Total number of successes: 9
-[15, 17, 82, 86, 87, 89, 103, 735, 1219]
+[16, 18, 84, 85, 89, 89, 96, 767, 2041]
 -
 Total number of errors: 0
 

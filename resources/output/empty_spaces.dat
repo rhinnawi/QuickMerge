@@ -8,7 +8,7 @@ Size: 9 Records
 
 1. 	Sorted: 		
 		3 3 4 5 6 7 8 8 9 
-Runtime: 28μs
+Runtime: 32μs
 Pivot type: first
 Insertion Sort Threshold: 2
 Comparisons: 21
@@ -23,7 +23,7 @@ All Exchanges:
 		(6, 6) (8, 8) (6, 7) (7, 6) (3, 3) (3, 3) (4, 3) 
 
 
-2. Runtime: 5μs
+2. Runtime: 6μs
 Pivot type: first
 Insertion Sort Threshold: 100
 Comparisons: 2
@@ -37,7 +37,7 @@ Comparisons: 2
 Exchanges: 8
 
 
-4. Runtime: 19μs
+4. Runtime: 20μs
 Pivot type: median_of_three
 Insertion Sort Threshold: 2
 Comparisons: 14
@@ -48,37 +48,37 @@ Exchanges: 15
 
 1. 	Sorted: 		
 		3 3 4 5 6 7 8 8 9 
-Runtime: 34μs
-Comparisons: 8
+Runtime: 24μs
+Comparisons: 9
 Exchanges: 0
 All Comparisons:		
 		(3, 3) (3, 4) (4, 5) (5, 6) (6, 7) (7, 8) (8, 8) (8, 9) 
 
 
-2. Runtime: 19μs
-Comparisons: 8
+2. Runtime: 20μs
+Comparisons: 9
 Exchanges: 0
 
 
-3. Runtime: 17μs
-Comparisons: 8
+3. Runtime: 19μs
+Comparisons: 9
 Exchanges: 0
 
 
-4. Runtime: 17μs
-Comparisons: 8
+4. Runtime: 19μs
+Comparisons: 9
 Exchanges: 0
 
 
-5. Runtime: 17μs
-Comparisons: 8
+5. Runtime: 18μs
+Comparisons: 9
 Exchanges: 0
 
 
 -------Performance Report-------
 
 Total number of successes: 9
-[4, 5, 17, 17, 17, 19, 19, 28, 34]
+[4, 6, 18, 19, 19, 20, 20, 24, 32]
 -
 Total number of errors: 0
 

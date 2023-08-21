@@ -4,28 +4,28 @@ Size: 100 Records
 
 -----Quicksort:
 
-1. Runtime: 252μs
+1. Runtime: 398μs
 Pivot type: first
 Insertion Sort Threshold: 2
 Comparisons: 391
 Exchanges: 436
 
 
-2. Runtime: 21μs
+2. Runtime: 41μs
 Pivot type: first
 Insertion Sort Threshold: 100
 Comparisons: 2
 Exchanges: 99
 
 
-3. Runtime: 131μs
+3. Runtime: 188μs
 Pivot type: first
 Insertion Sort Threshold: 50
 Comparisons: 52
 Exchanges: 124
 
 
-4. Runtime: 216μs
+4. Runtime: 285μs
 Pivot type: median_of_three
 Insertion Sort Threshold: 2
 Comparisons: 308
@@ -34,35 +34,35 @@ Exchanges: 356
 
 -----Natural Merge Sort:
 
-1. Runtime: 152μs
-Comparisons: 0
+1. Runtime: 237μs
+Comparisons: 100
 Exchanges: 0
 
 
-2. Runtime: 133μs
-Comparisons: 0
+2. Runtime: 137μs
+Comparisons: 100
 Exchanges: 0
 
 
-3. Runtime: 126μs
-Comparisons: 0
+3. Runtime: 157μs
+Comparisons: 100
 Exchanges: 0
 
 
-4. Runtime: 130μs
-Comparisons: 0
+4. Runtime: 151μs
+Comparisons: 100
 Exchanges: 0
 
 
-5. Runtime: 130μs
-Comparisons: 0
+5. Runtime: 172μs
+Comparisons: 100
 Exchanges: 0
 
 
 -------Performance Report-------
 
 Total number of successes: 9
-[21, 126, 130, 130, 131, 133, 152, 216, 252]
+[41, 137, 151, 157, 172, 188, 237, 285, 398]
 -
 Total number of errors: 0
 

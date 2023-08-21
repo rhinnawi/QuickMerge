@@ -35,7 +35,7 @@ Exchanges: 0
 
 -----Natural Merge Sort:
 
-1. Runtime: 1μs
+1. Runtime: 0μs
 Comparisons: 0
 Exchanges: 0
 
@@ -63,7 +63,7 @@ Exchanges: 0
 -------Performance Report-------
 
 Total number of successes: 9
-[0, 0, 0, 0, 0, 0, 0, 1, 1]
+[0, 0, 0, 0, 0, 0, 0, 0, 1]
 -
 Total number of errors: 0
 

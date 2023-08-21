@@ -40,35 +40,35 @@ Exchanges: 0
 
 1. 	Sorted: 		
 		100 
-Runtime: 3μs
-Comparisons: 0
+Runtime: 4μs
+Comparisons: 1
 Exchanges: 0
 
 
 2. Runtime: 2μs
-Comparisons: 0
+Comparisons: 1
 Exchanges: 0
 
 
-3. Runtime: 1μs
-Comparisons: 0
+3. Runtime: 2μs
+Comparisons: 1
 Exchanges: 0
 
 
 4. Runtime: 1μs
-Comparisons: 0
+Comparisons: 1
 Exchanges: 0
 
 
 5. Runtime: 1μs
-Comparisons: 0
+Comparisons: 1
 Exchanges: 0
 
 
 -------Performance Report-------
 
 Total number of successes: 9
-[0, 0, 0, 1, 1, 1, 1, 2, 3]
+[0, 0, 0, 1, 1, 1, 2, 2, 4]
 -
 Total number of errors: 0
 
